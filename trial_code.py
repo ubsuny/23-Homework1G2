@@ -1,4 +1,5 @@
 from qiskit import QuantumCircuit, transpile, Aer, execute
+from qiskit.visualization import plot_histogram
 
 # Define the classical numbers to be added
 number1 = 30
@@ -38,3 +39,6 @@ result_decimal = int(list(counts.keys())[0], 2)
 
 # Print the result
 print(f"The result of {number1} + {number2} is {result_decimal}")
+
+print(counts)
+plot_histogram(counts)
