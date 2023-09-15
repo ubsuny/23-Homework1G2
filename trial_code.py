@@ -1,8 +1,8 @@
 from qiskit import QuantumCircuit, transpile, Aer, execute
 
 # Define the classical numbers to be added
-number1 = 30
-number2 = 2
+number1 = 11
+number2 = 50
 
 # Determine the number of qubits needed to represent the numbers
 max_value = max(number1, number2)
