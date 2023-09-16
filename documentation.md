@@ -7,11 +7,13 @@
 6. **Execution**: If you choose a quantum simulator, you run your quantum circuit on it. If you choose a real quantum computer, you send your quantum circuit to the machine for execution.
 7. **Result**: After execution, you receive a result. In the case of addition, this result represents the sum of the two numbers you encoded in the beginning.
 
+Now, you can either write code on an IDE or use IBM's composer to construct quantum circuits like half or full adder in GUI.
 
 <div style="text-align:center;">
   <img src="https://images.squarespace-cdn.com/content/v1/5d52f7bd9d7b3e0001819015/1576093121344-1Z1Q3H99J0C5JYRIO5OJ/my_circuit.png" alt="Adder_Circuit" width="800" height="350">
 </div>
 
+## 1. Writing code (Using ChatGPT)
 # Quantum Addition with Qiskit for Quantum Computer
 
 This code demonstrates how to perform quantum addition of two classical numbers using Qiskit. It encodes the numbers into quantum states, applies quantum gates to perform the addition, and then measures the result.
@@ -28,53 +30,65 @@ Usage:
 9. Print the result and visualize it using a histogram.
 
 Example:
-For number1 = 30 and number2 = 2, the result of addition is calculated as 30 + 2 = 32.
+For num1 = 1 and num2 = 1, the result of addition is calculated as 1 + 1 = 2.
 
 ```python
 # Import necessary libraries
 from qiskit import QuantumCircuit, transpile, Aer, execute
-from qiskit.visualization import plot_histogram
 
-# Define the classical numbers to be added
-number1 = 30
+def add_quantum(num1, num2):
+    """
+    Adds two numbers using a quantum circuit.
+
+    Args:
+        num1 (int): The first number to be added.
+        num2 (int): The second number to be added.
+
+    Returns:
+        int: The sum of num1 and num2.
+    """
+    # Determine the number of qubits needed to represent the numbers
+    max_value = max(num1, num2)
+    num_qubits = max(1, (max_value.bit_length() + 1))
+
+    # Create a quantum circuit with enough qubits
+    qc = QuantumCircuit(num_qubits * 2, num_qubits)
+
+    # Encode the classical numbers into quantum states
+    for i in range(num_qubits):
+        if (num1 >> i) & 1:
+            qc.x(i)  # Apply X gate for 1 bits in num1
+        if (num2 >> i) & 1:
+            qc.x(i + num_qubits)  # Apply X gate for 1 bits in num2
+
+    # Perform the addition by applying CNOT gates
+    for i in range(num_qubits - 1):
+        qc.ccx(i, i + num_qubits, i + num_qubits + 1)
+        qc.cx(i, i + num_qubits)
+
+    # Measure the result
+    qc.measure(range(num_qubits, num_qubits * 2), range(num_qubits))
+
+    # Simulate the circuit
+    simulator = Aer.get_backend('qasm_simulator')
+    compiled_circuit = transpile(qc, simulator)
+    job = execute(compiled_circuit, simulator, shots=1)
+    result = job.result()
+
+    # Get the measurement result
+    counts = result.get_counts(qc)
+    result_decimal = int(list(counts.keys())[0], 2)
+
+    return result_decimal
+
+# Example usage
+number1 = 3
 number2 = 2
-
-# Determine the number of qubits needed to represent the numbers
-max_value = max(number1, number2)
-num_qubits = max(1, (max_value.bit_length() + 1))
-
-# Create a quantum circuit with enough qubits
-qc = QuantumCircuit(num_qubits * 2, num_qubits)
-
-# Encode the classical numbers into quantum states
-for i in range(num_qubits):
-    if (number1 >> i) & 1:
-        qc.x(i)  # Apply X gate for 1 bits in number1
-    if (number2 >> i) & 1:
-        qc.x(i + num_qubits)  # Apply X gate for 1 bits in number2
-
-# Perform the addition by applying CNOT gates
-for i in range(num_qubits - 1):
-    qc.ccx(i, i + num_qubits, i + num_qubits + 1)
-    qc.cx(i, i + num_qubits)
-
-# Measure the result
-qc.measure(range(num_qubits, num_qubits * 2), range(num_qubits))
-
-# Simulate the circuit
-simulator = Aer.get_backend('qasm_simulator')
-compiled_circuit = transpile(qc, simulator)
-job = execute(compiled_circuit, simulator, shots=1)
-result = job.result()
-
-# Get the measurement result
-counts = result.get_counts(qc)
-result_decimal = int(list(counts.keys())[0], 2)
-
-# Print the result
-print(f"The result of {number1} + {number2} is {result_decimal}")
-
-# Visualize the measurement result using a histogram
-print(counts)
-plot_histogram(counts)
+result = add_quantum(number1, number2)
+print(f"The result of {number1} + {number2} is {result}")
 ```
+
+## 2. Constructing half adder circuit (using IBM composer)
+![hald_adder](https://github.com/Pranjal-Srivastava-2023/23-Homework1G2_forked/assets/143828394/8d061657-4037-4c15-bb97-ddd201f15e7e)
+
+
