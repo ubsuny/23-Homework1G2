@@ -1,3 +1,13 @@
+## Basic idea: Steps to implement a classical operation on a Quantum Computer:
+1. **Quantum Circuit**: Think of a quantum circuit as a set of instructions for the quantum computer. Just like a recipe guides a chef in the kitchen, a quantum circuit guides the quantum computer in performing specific tasks.
+2. **Encoding**: When you want to add two numbers, the first step is to encode these numbers into a quantum state. This is like translating the numbers into a language that the quantum computer understands. If you have the numbers 3 and 2, you would represent them as a set of qubits in a specific way.
+3. **Quantum Addition**: The heart of the process involves performing addition using quantum gates and operations. This step is where the quantum magic happens. Quantum gates are like specialized tools that the quantum computer uses to manipulate the qubits in a way that simulates addition.
+4. **Measurement**: After the quantum addition, we need to find out the result. Measurement is the process of checking what the qubits look like after the quantum operations. The result is often probabilistic, meaning there can be multiple possible outcomes.
+5. **Simulation or Real Quantum Computer**: At this stage, you decide whether to run the code on a quantum simulator (a software-based quantum computer emulator) or on a real quantum computer. Simulators are like virtual quantum computers, while real quantum computers are physical machines designed to perform quantum computations.
+6. **Execution**: If you choose a quantum simulator, you run your quantum circuit on it. If you choose a real quantum computer, you send your quantum circuit to the machine for execution.
+7. **Result**: After execution, you receive a result. In the case of addition, this result represents the sum of the two numbers you encoded in the beginning.
+
+
 <div style="text-align:center;">
   <img src="https://images.squarespace-cdn.com/content/v1/5d52f7bd9d7b3e0001819015/1576093121344-1Z1Q3H99J0C5JYRIO5OJ/my_circuit.png" alt="Adder_Circuit" width="800" height="350">
 </div>
