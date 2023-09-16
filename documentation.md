@@ -96,6 +96,8 @@ plot_histogram(counts)
 ```
 
 ## 2. Constructing half adder circuit (using IBM composer)
+# Adding 1+1
 ![hald_adder](https://github.com/Pranjal-Srivastava-2023/23-Homework1G2_forked/assets/143828394/8d061657-4037-4c15-bb97-ddd201f15e7e)
-
+# Adding 0+1
+![half_adder2](https://github.com/ubsuny/23-Homework1G2/assets/143828394/cc8a59de-5c20-40e2-8848-1d11511bb3fc)
 
