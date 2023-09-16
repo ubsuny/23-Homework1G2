@@ -35,14 +35,16 @@ For num1 = 1 and num2 = 1, the result of addition is calculated as 1 + 1 = 2.
 ```python
 # Import necessary libraries
 from qiskit import QuantumCircuit, transpile, Aer, execute
+from qiskit.visualization import plot_histogram
 
-def add_quantum(num1, num2):
+def add_quantum(num1, num2, shots=1024):
     """
     Adds two numbers using a quantum circuit.
 
     Args:
         num1 (int): The first number to be added.
         num2 (int): The second number to be added.
+        shots (int): The number of shots (measurements) to perform.
 
     Returns:
         int: The sum of num1 and num2.
@@ -72,20 +74,25 @@ def add_quantum(num1, num2):
     # Simulate the circuit
     simulator = Aer.get_backend('qasm_simulator')
     compiled_circuit = transpile(qc, simulator)
-    job = execute(compiled_circuit, simulator, shots=1)
+    job = execute(compiled_circuit, simulator, shots=shots)  # Specify the number of shots
     result = job.result()
 
     # Get the measurement result
     counts = result.get_counts(qc)
     result_decimal = int(list(counts.keys())[0], 2)
 
-    return result_decimal
+    return result_decimal, counts  # Return both the result and the counts
 
 # Example usage
 number1 = 3
 number2 = 2
-result = add_quantum(number1, number2)
+shots = 1024  # Specify the number of shots
+result, counts = add_quantum(number1, number2, shots=shots)
 print(f"The result of {number1} + {number2} is {result}")
+
+# Plot histogram of measurement outcomes
+plot_histogram(counts)
+
 ```
 
 ## 2. Constructing half adder circuit (using IBM composer)
