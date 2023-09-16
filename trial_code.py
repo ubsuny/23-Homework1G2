@@ -1,7 +1,18 @@
 from qiskit import QuantumCircuit, transpile, Aer, execute
 from qiskit.visualization import plot_histogram
 
-def multiply(num1, num2)
+def multiply(num1, num2):
+     """This function multiplies two numbers.
+
+  Args:
+    num1: The first number.
+    num2: The second number.
+
+  Returns:
+    The product of num1 and num2.
+  """
+
+    
     # Determine the number of qubits needed to represent the numbers
     max_value = max(num1, num2)
     num_qubits = max(1, (max_value.bit_length() + 1))
