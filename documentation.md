@@ -10,7 +10,7 @@
 Now, you can either write code on an IDE or use IBM's composer to construct quantum circuits like half or full adder in GUI.
 
 <div style="text-align:center;">
-  <img src="https://images.squarespace-cdn.com/content/v1/5d52f7bd9d7b3e0001819015/1576093121344-1Z1Q3H99J0C5JYRIO5OJ/my_circuit.png" alt="Adder_Circuit" width="800" height="350">
+  <img src="https://images.squarespace-cdn.com/content/v1/5d52f7bd9d7b3e0001819015/1576093121344-1Z1Q3H99J0C5JYRIO5OJ/my_circuit.png" alt="Adder_Circuit" width="750" height="350">
 </div>
 
 ## 1. Writing code (Using ChatGPT)
