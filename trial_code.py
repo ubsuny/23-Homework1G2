@@ -2,14 +2,14 @@ from qiskit import QuantumCircuit, transpile, Aer, execute
 from qiskit.visualization import plot_histogram
 
 def multiply(num1, num2):
-     """This function multiplies two numbers.
+     """This function adds two numbers.
 
   Args:
     num1: The first number.
     num2: The second number.
 
   Returns:
-    The product of num1 and num2.
+    The sum of num1 and num2.
   """
 
     
