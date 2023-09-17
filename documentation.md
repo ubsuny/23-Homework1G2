@@ -123,3 +123,12 @@ output = carry = 0 and sum = 1
 ![ha_zero_zero](https://github.com/s4il3sh/23-Homework1G2/assets/144289804/7d102862-b6d9-43b9-9244-96a516c90484)
 output = carry = 0 and sum = 0
 
+# Limitation of the Quantum Computer
+1) High cost: Quantum computers are very expensive to build and maintain. This is because they require specialized hardware and operating environments.
+2) Noise and errors: Quantum computers are more prone to noise and errors than traditional computers. This is because qubits are very sensitive to their environment.
+3) Scalability: It is difficult to build and scale quantum computers. This is because qubits are difficult to control and manipulate.
+4) Software development: Developing software for quantum computers is challenging. This is because quantum algorithms are very different from classical algorithms.
+5) Security risks: Quantum computers could be used to break current encryption algorithms. This could pose a threat to data security and privacy.
+6) The problem of the quantum full-adder circuit is not very efficient. It requires a large number of qubits and gates, and it is very susceptible to errors. As a result, it is not yet possible to add large numbers on a quantum computer faster than on a classical computer.
+
+
