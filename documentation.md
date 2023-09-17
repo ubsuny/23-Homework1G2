@@ -77,6 +77,20 @@ def add_quantum(num1, num2, shots=1024):
     job = execute(compiled_circuit, simulator, shots=shots)  # Specify the number of shots
     result = job.result()
 
+    """
+    Simulates the quantum circuit using the Qiskit Aer simulator.
+
+    This function simulates the given quantum circuit using the Qiskit Aer simulator. It compiles the circuit,specifies the number of shots for measurements, and returns the simulation result.
+
+  Args:
+        qc (QuantumCircuit): The quantum circuit to be simulated.
+        shots (int): The number of shots (measurements) to perform.
+
+    Returns:
+        Result: The result of the quantum circuit simulation.
+    """
+
+
     # Get the measurement result
     counts = result.get_counts(qc)
     result_decimal = int(list(counts.keys())[0], 2)
