@@ -129,6 +129,6 @@ output = carry = 0 and sum = 0
 3) Scalability: It is difficult to build and scale quantum computers. This is because qubits are difficult to control and manipulate.
 4) Software development: Developing software for quantum computers is challenging. This is because quantum algorithms are very different from classical algorithms.
 5) Security risks: Quantum computers could be used to break current encryption algorithms. This could pose a threat to data security and privacy.
-6) The problem of the quantum full-adder circuit is not very efficient. It requires a large number of qubits and gates, and it is very susceptible to errors. As a result, it is not yet possible to add large numbers on a quantum computer faster than on a classical computer.
+6) The problem of the quantum full-adder circuit is not very efficient. It requires a large number of qubits and gates, and it is very susceptible to errors. So, it is not yet possible to add large numbers on a quantum computer faster than on a classical computer.
 
 
