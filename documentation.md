@@ -132,3 +132,16 @@ plot_histogram(counts)
 # Adding 0+1
 ![half_adder2](https://github.com/ubsuny/23-Homework1G2/assets/143828394/cc8a59de-5c20-40e2-8848-1d11511bb3fc)
 
+# Limitations of Quantum Computers
+
+Quantum computers, including those used in platforms like IBM Quantum Composer, have several limitations when it comes to designing circuits and solving practical problems.
+
+i) Error rates: For example, the X gate flips the state of a qubit, changing |0⟩ to |1⟩ and vice versa. Error rates for a gate like the X gate can vary depending on the quantum hardware and environmental conditions.
+
+ii) Gate Errors: Quantum gates are not perfect, and gate errors can accumulate in complex quantum circuits, making it difficult to perform long and accurate computations.
+
+iii) Limited Software Ecosystem: Quantum software tools and libraries are still in their early stages of development, which can make it challenging for users to design and implement quantum circuits efficiently.
+
+iv) Scalability Challenges: Building large-scale, fault-tolerant quantum computers is a significant engineering challenge.
+
+v) Qubit Decoherence: Quantum states are fragile and can easily lose their coherence, leading to errors in computations.
