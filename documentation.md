@@ -108,6 +108,21 @@ print(f"The result of {number1} + {number2} is {result}")
 plot_histogram(counts)
 
 ```
+# Half Adder Limitations in G2 (quantum_addition.py)
+
+Even though the code is designed to add two numbers using a quantum circuit. However, it is not working correctly for certain input numbers,
+For examples:
+7 + 7 = 10
+1 + 15 = 12
+7 + 9 = 0
+15 + 15 = 10
+
+These discrepancies are due to several reasons:
+i) The binary addition of these numbers requires an extra bit for the carry. If the code doesn't account for this properly, it may produce incorrect results.
+ii) Even for relatively small numbers, if the quantum circuit has a strict limit on the number of qubits (e.g., 5 qubits), it will fail to represent and compute the sum correctly.
+iii) In some cases where one number is significantly smaller than the other, then the code doesn't correctly handle mixed-size inputs, it may produce incorrect results.
+iv) If the binary representation of either number exceeds the available qubits, it will cause issues.
+v) The binary addition is performed using CNOT gates. If the number of qubits is insufficient to perform the addition, it will result in incorrect or unexpected behavior.
 
 ## 2. Constructing half adder circuit (using IBM composer)
 # Truth Table
