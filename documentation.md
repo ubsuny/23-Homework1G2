@@ -67,6 +67,16 @@ def add_quantum(num1, num2, shots=1024):
     for i in range(num_qubits - 1):
         qc.ccx(i, i + num_qubits, i + num_qubits + 1)
         qc.cx(i, i + num_qubits)
+        """
+        Performs quantum addition using controlled-X gates.
+
+        This function performs quantum addition by applying controlled-X (CNOT) gates to the qubits. 
+        It iterates through the qubits and applies CNOT gates to perform the addition operation.
+
+        Args:
+            i (int): The index of the qubit being operated on.
+        """
+
 
     # Measure the result
     qc.measure(range(num_qubits, num_qubits * 2), range(num_qubits))
