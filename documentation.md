@@ -115,6 +115,20 @@ plot_histogram(counts)
 
 # Adding 1+1
 ![hald_adder](https://github.com/Pranjal-Srivastava-2023/23-Homework1G2_forked/assets/143828394/8d061657-4037-4c15-bb97-ddd201f15e7e)
+
+# To perform the addition operation 1+1 using a half adder
+ Following steps are preformed:
+- Start with all qubits in the |0⟩ state, which represents binary 0.
+- Apply a NOT gate to q0 and q1. This operation flips their states from |0⟩ to   |1⟩, representing the inputs 1 and 1, respectively.
+- Next, apply a CNOT gate from q0 to q2. The CNOT gate flips the state of   q2   (controlled qubit) if and only if q0 (target qubit) is in the |1⟩ state.       This represents the XOR operation between q0 and q2, which results in q2       being in the |1⟩ state if q0 is in the |1⟩ state. This represents the sum      bit.
+- Also apply another CNOT gate from q1 to q2. This represents the XOR            operation between q1 and q2, which results in q2 being in the |1⟩ state if     q1 is in the |1⟩ state.
+- Finally, apply a CCNOT (Toffoli) gate from q0 and q1 to q3. The CCNOT gate     is a controlled-controlled-X gate that flips the state of q3 if both q0 and    q1 are in the |1⟩ state and the result is stored in q3 as the carry bit.
+
+  After these operations, we will have the following results:
+
+    - q2 will be in the |0⟩ state, representing the sum bit and get 0 as sum.
+    - q3 will be in the |1⟩ state, representing the carry bit, which is 1 as a       carry.
+  So, in this circuit, we've successfully performed the half adder operation     for 1+1, resulting in sum=0 and carry=1.
 # Adding 0+1
 ![half_adder2](https://github.com/ubsuny/23-Homework1G2/assets/143828394/cc8a59de-5c20-40e2-8848-1d11511bb3fc)
 
