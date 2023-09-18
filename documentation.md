@@ -176,7 +176,7 @@ These discrepancies are due to several reasons:
   ]
 
 ## Adding 0+1
-We use another NOT Gate to flip |1⟩ to |0⟩ in q[0]
+We simply use another NOT Gate to flip |1⟩ to |0⟩ in q[0]. The rest of the working is same as the previous circuit.
 ![half_adder2](https://github.com/ubsuny/23-Homework1G2/assets/143828394/cc8a59de-5c20-40e2-8848-1d11511bb3fc)
 
 ## Limitations of the Quantum Computer
