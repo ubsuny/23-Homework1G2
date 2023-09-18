@@ -119,6 +119,21 @@ print(f"The result of {number1} + {number2} is {result}")
 plot_histogram(counts)
 
 ```
+# Half Adder Limitations in G2 (quantum_addition.py)
+
+Even though the code is designed to add two numbers using a quantum circuit. However, it is not working correctly for certain input numbers,
+For examples:
+7 + 7 = 10
+1 + 15 = 12
+7 + 9 = 0
+15 + 15 = 10
+
+These discrepancies are due to several reasons:
+i) The binary addition of these numbers requires an extra bit for the carry. If the code doesn't account for this properly, it may produce incorrect results.
+ii) Even for relatively small numbers, if the quantum circuit has a strict limit on the number of qubits (e.g., 5 qubits), it will fail to represent and compute the sum correctly.
+iii) In some cases where one number is significantly smaller than the other, then the code doesn't correctly handle mixed-size inputs, it may produce incorrect results.
+iv) If the binary representation of either number exceeds the available qubits, it will cause issues.
+v) The binary addition is performed using CNOT gates. If the number of qubits is insufficient to perform the addition, it will result in incorrect or unexpected behavior.
 
 # 2. Constructing half adder circuit (using IBM composer)
 ## Truth Table
@@ -178,3 +193,30 @@ output = carry = 0 and sum = 0
 
 
 
+Following steps are preformed:
+- Start with all qubits in the |0⟩ state, which represents binary 0.
+- Apply a NOT gate to q0 and q1. This operation flips their states from |0⟩ to |1⟩, representing the inputs 1 and 1,               respectively.
+- Apply a NOT gate again to the q0, representing the final input 0
+- Next, apply a CNOT gate from q0 to q2. The CNOT gate flips the state of q2 (controlled qubit) if and only if q0 (target qubit)   is in the |1⟩ state. This represents the XOR operation between q0 and q2, which results in q2 being in the |0⟩ state if q0 is in the |0⟩ state. This represents the sum bit.
+- Also apply another CNOT gate from q1 to q2. This represents the XOR operation between q1 and q2, which results in q2 being in the |1⟩ state if q1 is in the |1⟩ state.
+- Finally, apply a CCNOT (Toffoli) gate from q0 and q1 to q3. The CCNOT gate is a controlled-controlled-X gate that flips the      state of q3 if both q0 and q1 are in the |1⟩ state and the result is stored in q3 as the carry bit. however, in this case q0     is 0 and q1 is 1.
+
+  After these operations, we will have the following results:
+
+    - q2 will be in the |1⟩ state, representing the sum bit and get 1 as sum.
+    - q3 will be in the |0⟩ state, representing the carry bit, which is 0 as a carry.
+  So, in this circuit, we've successfully performed the half adder operation for 0+1, resulting in sum=1 and carry=0.
+
+# Limitations of Quantum Computers
+
+Quantum computers, including those used in platforms like IBM Quantum Composer, have several limitations when it comes to designing circuits and solving practical problems.
+
+i) Error rates: For example, the X gate flips the state of a qubit, changing |0⟩ to |1⟩ and vice versa. Error rates for a gate like the X gate can vary depending on the quantum hardware and environmental conditions.
+
+ii) Gate Errors: Quantum gates are not perfect, and gate errors can accumulate in complex quantum circuits, making it difficult to perform long and accurate computations.
+
+iii) Limited Software Ecosystem: Quantum software tools and libraries are still in their early stages of development, which can make it challenging for users to design and implement quantum circuits efficiently.
+
+iv) Scalability Challenges: Building large-scale, fault-tolerant quantum computers is a significant engineering challenge.
+
+v) Qubit Decoherence: Quantum states are fragile and can easily lose their coherence, leading to errors in computations.
