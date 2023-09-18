@@ -88,6 +88,20 @@ def add_quantum(num1, num2, shots=1024):
     job = execute(compiled_circuit, simulator, shots=shots)  # Specify the number of shots
     result = job.result()
 
+    """
+    Simulates the quantum circuit using the Qiskit Aer simulator.
+
+    This function simulates the given quantum circuit using the Qiskit Aer simulator. It compiles the circuit,specifies the number of shots for measurements, and returns the simulation result.
+
+  Args:
+        qc (QuantumCircuit): The quantum circuit to be simulated.
+        shots (int): The number of shots (measurements) to perform.
+
+    Returns:
+        Result: The result of the quantum circuit simulation.
+    """
+
+
     # Get the measurement result
     counts = result.get_counts(qc)
     result_decimal = int(list(counts.keys())[0], 2)
@@ -112,6 +126,37 @@ plot_histogram(counts)
 
 ### Adding 1+1
 ![hald_adder](https://github.com/Pranjal-Srivastava-2023/23-Homework1G2_forked/assets/143828394/8d061657-4037-4c15-bb97-ddd201f15e7e)
+
+
+# To perform the addition operation 1+1 using a half adder
+ Following steps are preformed:
+- Start with all qubits in the |0⟩ state, which represents binary 0.
+- Apply a NOT gate to q0 and q1. This operation flips their states from |0⟩ to   |1⟩, representing the inputs 1 and 1, respectively.
+- Next, apply a CNOT gate from q0 to q2. The CNOT gate flips the state of   q2   (controlled qubit) if and only if q0 (target qubit) is in the |1⟩ state.       This represents the XOR operation between q0 and q2, which results in q2       being in the |1⟩ state if q0 is in the |1⟩ state. This represents the sum      bit.
+- Also apply another CNOT gate from q1 to q2. This represents the XOR            operation between q1 and q2, which results in q2 being in the |1⟩ state if     q1 is in the |1⟩ state.
+- Finally, apply a CCNOT (Toffoli) gate from q0 and q1 to q3. The CCNOT gate     is a controlled-controlled-X gate that flips the state of q3 if both q0 and    q1 are in the |1⟩ state and the result is stored in q3 as the carry bit.
+
+  After these operations, we will have the following results:
+
+    - q2 will be in the |0⟩ state, representing the sum bit and get 0 as sum.
+    - q3 will be in the |1⟩ state, representing the carry bit, which is 1 as a       carry.
+  So, in this circuit, we've successfully performed the half adder operation     for 1+1, resulting in sum=0 and carry=1.
+# Adding 0+1
+![half_adder2](https://github.com/ubsuny/23-Homework1G2/assets/143828394/cc8a59de-5c20-40e2-8848-1d11511bb3fc)
+Following steps are preformed:
+- Start with all qubits in the |0⟩ state, which represents binary 0.
+- Apply a NOT gate to q0 and q1. This operation flips their states from |0⟩ to |1⟩, representing the inputs 1 and 1,               respectively.
+- Apply a NOT gate again to the q0, representing the final input 0
+- Next, apply a CNOT gate from q0 to q2. The CNOT gate flips the state of q2 (controlled qubit) if and only if q0 (target qubit)   is in the |1⟩ state. This represents the XOR operation between q0 and q2, which results in q2 being in the |0⟩ state if q0 is in the |0⟩ state. This represents the sum bit.
+- Also apply another CNOT gate from q1 to q2. This represents the XOR operation between q1 and q2, which results in q2 being in the |1⟩ state if q1 is in the |1⟩ state.
+- Finally, apply a CCNOT (Toffoli) gate from q0 and q1 to q3. The CCNOT gate is a controlled-controlled-X gate that flips the      state of q3 if both q0 and q1 are in the |1⟩ state and the result is stored in q3 as the carry bit. however, in this case q0     is 0 and q1 is 1.
+
+  After these operations, we will have the following results:
+
+    - q2 will be in the |1⟩ state, representing the sum bit and get 1 as sum.
+    - q3 will be in the |0⟩ state, representing the carry bit, which is 0 as a carry.
+  So, in this circuit, we've successfully performed the half adder operation for 0+1, resulting in sum=1 and carry=0.
+=======
 output = carry = 1 and sum = 0
 ### Adding 0+1
 ![half_adder2](https://github.com/ubsuny/23-Homework1G2/assets/143828394/cc8a59de-5c20-40e2-8848-1d11511bb3fc)
@@ -130,5 +175,6 @@ output = carry = 0 and sum = 0
 4) Software development: Developing software for quantum computers is challenging. This is because quantum algorithms are very different from classical algorithms.
 5) Security risks: Quantum computers could be used to break current encryption algorithms. This could pose a threat to data security and privacy.
 6) The problem of the quantum full-adder circuit is not very efficient. It requires a large number of qubits and gates, and it is very susceptible to errors. So, it is not yet possible to add large numbers on a quantum computer faster than on a classical computer.
+
 
 
