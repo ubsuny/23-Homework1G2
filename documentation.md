@@ -1,4 +1,5 @@
-## Basic idea: Steps to implement a classical operation on a Quantum Computer:
+## Steps to implement a classical operation on a Quantum Computer:
+
 1. **Quantum Circuit**: Think of a quantum circuit as a set of instructions for the quantum computer. Just like a recipe guides a chef in the kitchen, a quantum circuit guides the quantum computer in performing specific tasks.
 2. **Encoding**: When you want to add two numbers, the first step is to encode these numbers into a quantum state. This is like translating the numbers into a language that the quantum computer understands. If you have the numbers 3 and 2, you would represent them as a set of qubits in a specific way.
 3. **Quantum Addition**: The heart of the process involves performing addition using quantum gates and operations. This step is where the quantum magic happens. Quantum gates are like specialized tools that the quantum computer uses to manipulate the qubits in a way that simulates addition.
@@ -9,16 +10,12 @@
 
 Now, you can either write code on an IDE or use IBM's composer to construct quantum circuits like half or full adder in GUI.
 
-<div style="text-align:center;">
-  <img src="https://images.squarespace-cdn.com/content/v1/5d52f7bd9d7b3e0001819015/1576093121344-1Z1Q3H99J0C5JYRIO5OJ/my_circuit.png" alt="Adder_Circuit" width="750" height="350">
-</div>
-
 ## 1. Writing code (Using ChatGPT)
-# Quantum Addition with Qiskit for Quantum Computer
+## Quantum Addition with Qiskit
 
 This code demonstrates how to perform quantum addition of two classical numbers using Qiskit. It encodes the numbers into quantum states, applies quantum gates to perform the addition, and then measures the result.
 
-Usage:
+Algorithm:
 1. Define the classical numbers to be added (number1 and number2).
 2. Determine the number of qubits needed to represent the numbers.
 3. Create a quantum circuit with enough qubits.
@@ -30,7 +27,7 @@ Usage:
 9. Print the result and visualize it using a histogram.
 
 Example:
-For num1 = 1 and num2 = 1, the result of addition is calculated as 1 + 1 = 2.
+For num1 = 1 and num2 = 1, the result of addition is calculated as 1 + 1 = 2. The result is probabilistic in nature. We make the measurement 1024 times these are called shots. So, 1 + 1 is not always 2.
 
 ```python
 # Import necessary libraries
@@ -118,13 +115,16 @@ print(f"The result of {number1} + {number2} is {result}")
 plot_histogram(counts)
 
 ```
-# Half Adder Limitations in G2 (quantum_addition.py)
+## Limitations of the code quantum_addition.py
+The unit test results are:
+-  1 + 0 = 0
+-  1 + 1 = 2
+-  0 + 0 = 0
 
-Even though the code is designed to add two numbers using a quantum circuit. However, it is not working correctly for certain input numbers,
-For examples:
+However, it is not working correctly for certain input numbers,
+
 -  7 + 7 = 10
 -  1 + 15 = 12
--  7 + 9 = 0
 -  15 + 15 = 10
 
 These discrepancies are due to several reasons:
@@ -134,15 +134,14 @@ These discrepancies are due to several reasons:
 -  If the binary representation of either number exceeds the available qubits, it will cause issues.
 -  The binary addition is performed using CNOT gates. If the number of qubits is insufficient to perform the addition, it will result in incorrect or unexpected behavior.
 
-# 2. Constructing half adder circuit (using IBM composer)
-## Truth Table
+## 2. Constructing half adder circuit (using IBM composer)
+## Truth Table (half adder)
 ![image](https://github.com/ubsuny/23-Homework1G2/assets/143649367/42201d3d-491c-4e8f-a65f-0f3d4a30f300)
 
-### Adding 1+1
+## Adding 1+1
 ![hald_adder](https://github.com/Pranjal-Srivastava-2023/23-Homework1G2_forked/assets/143828394/8d061657-4037-4c15-bb97-ddd201f15e7e)
-output = carry = 1 and sum = 0
 
-#### To perform the addition operation 1+1 using a half adder
+## Explanation
  The following steps are performed:
 - Start with all qubits in the |0⟩ state, which represents binary 0.
 - Apply a NOT gate to q0 and q1. This operation flips their states from |0⟩ to   |1⟩, representing the inputs 1 and 1, respectively.
@@ -155,63 +154,46 @@ output = carry = 1 and sum = 0
     - q2 will be in the |0⟩ state, representing the sum bit, and get 0 as the sum.
     - q3 will be in the |1⟩ state, representing the carry bit, which is 1 as a       carry.
   So, in this circuit, we've successfully performed the half-adder operation     for 1+1, resulting in sum=0 and carry=1.
+- The measurement for this operation was made using ibm_perth quantum computer and
 
-### Adding 0+1
+  ## Results
+  ```python
+  {
+  "quasi_dists": [
+    {
+      "10": 0.816048498403436,
+      "11": 0.03503644534795631,
+      "00": 0.07111106824997514,
+      "01": 0.07780398799863257
+    }
+  ],
+  "metadata": [
+    {
+      "shots": 1024,
+      "readout_mitigation_overhead": 1.683986607946126,
+      "readout_mitigation_time": 0.09256109222769737
+    }
+  ]
+
+## Adding 0+1
+We use another NOT Gate to flip |1⟩ to |0⟩ in q[0]
 ![half_adder2](https://github.com/ubsuny/23-Homework1G2/assets/143828394/cc8a59de-5c20-40e2-8848-1d11511bb3fc)
-output = carry = 0 and sum = 1
 
-#### The following steps are performed:
-- Start with all qubits in the |0⟩ state, which represents binary 0.
-- Apply a NOT gate to q0 and q1. This operation flips their states from |0⟩ to |1⟩, representing the inputs 1 and 1,               respectively.
-- Apply a NOT gate again to the q0, representing the final input 0
-- Next, apply a CNOT gate from q0 to q2. The CNOT gate flips the state of q2 (controlled qubit) if and only if q0 (target qubit)   is in the |1⟩ state. This represents the XOR operation between q0 and q2, which results in q2 being in the |0⟩ state if q0 is in the |0⟩ state. This represents the sum bit.
-- Also apply another CNOT gate from q1 to q2. This represents the XOR operation between q1 and q2, which results in q2 being in the |1⟩ state if q1 is in the |1⟩ state.
-- Finally, apply a CCNOT (Toffoli) gate from q0 and q1 to q3. The CCNOT gate is a controlled-controlled-X gate that flips the      state of q3 if both q0 and q1 are in the |1⟩ state and the result is stored in q3 as the carry bit. however, in this case q0     is 0 and q1 is 1.
-
-  After these operations, we will have the following results:
-
-    - q2 will be in the |1⟩ state, representing the sum bit and get 1 as a sum.
-    - q3 will be in the |0⟩ state, representing the carry bit, which is 0 as a carry.
-  So, in this circuit, we've successfully performed the half-adder operation for 0+1, resulting in sum=1 and carry=0.
-
-### Adding 1+0
-![ha_one_zero](https://github.com/s4il3sh/23-Homework1G2/assets/144289804/ed83dc76-8cce-4b0d-9656-7d67ba1cf37d)
-output = carry = 0 and sum = 1
-
-#### The following steps are performed:
-- Start with all qubits in the |0⟩ state, which represents binary 0.
-- Apply a NOT gate to q0 and q1. This operation flips their states from |0⟩ to |1⟩, representing the inputs 1 and 1,               respectively.
-- Apply a NOT gate again to the q0, representing the final input 0
-- Next, apply a CNOT gate from q0 to q2. The CNOT gate flips the state of q2 (controlled qubit) if and only if q0 (target qubit)   is in the |1⟩ state. This represents the XOR operation between q0 and q2, which results in q2 being in the |0⟩ state if q0 is in the |0⟩ state. This represents the sum bit.
-- Also apply another CNOT gate from q1 to q2. This represents the XOR operation between q1 and q2, which results in q2 being in the |1⟩ state if q1 is in the |1⟩ state.
-- Finally, apply a CCNOT (Toffoli) gate from q0 and q1 to q3. The CCNOT gate is a controlled-controlled-X gate that flips the      state of q3 if both q0 and q1 are in the |1⟩ state and the result is stored in q3 as the carry bit. however, in this case q0     is 0 and q1 is 1.
-
-  After these operations, we will have the following results:
-
-    - q2 will be in the |1⟩ state, representing the sum bit and get 1 as a sum.
-    - q3 will be in the |0⟩ state, representing the carry bit, which is 0 as a carry.
-  So, in this circuit, we've successfully performed the half-adder operation for 0+1, resulting in sum=1 and carry=0.
-
-### Adding 0+0
-![ha_zero_zero](https://github.com/s4il3sh/23-Homework1G2/assets/144289804/7d102862-b6d9-43b9-9244-96a516c90484)
-output = carry = 0 and sum = 0
-
-# Limitation of the Quantum Computer
+## Limitations of the Quantum Computer
 Quantum computers, including those used in platforms like IBM Quantum Composer, have several limitations when it comes to designing circuits and solving practical problems.
 
-1) Error rates: For example, the X gate flips the state of a qubit, changing |0⟩ to |1⟩ and vice versa. Error rates for a gate like the X gate can vary depending on the quantum hardware and environmental conditions.
+1) Exponential State Space: Quantum computers face the challenge of an exponentially growing state space as the number of qubits increases. This makes it impractical to represent and manipulate all possible states for certain types of computations. Each additional qubit doubles the number of potential quantum states, leading to an exponential increase in the size of the quantum state space.
 
-2) Gate Errors: Quantum gates are not perfect, and gate errors can accumulate in complex quantum circuits, making it difficult to perform long and accurate computations.
+2) Limited Software Ecosystem: Quantum software tools and libraries are still in their early stages of development, which can make it challenging for users to design and implement quantum circuits efficiently.
 
-3) Limited Software Ecosystem: Quantum software tools and libraries are still in their early stages of development, which can make it challenging for users to design and implement quantum circuits efficiently.
+3) Gate Errors: Quantum gates are not perfect, and gate errors can accumulate in complex quantum circuits, making it difficult to perform long and accurate computations.
 
-4) Scalability Challenges: Building large-scale, fault-tolerant quantum computers is a significant engineering challenge.
+4) Error rates: For example, the X gate flips the state of a qubit, changing |0⟩ to |1⟩ and vice versa. Error rates for a gate like the X gate can vary depending on the quantum hardware and environmental conditions.
 
-5) Qubit Decoherence: Quantum states are fragile and can easily lose their coherence, leading to errors in computations.
+5) Scalability Challenges: Building large-scale, fault-tolerant quantum computers is a significant engineering challenge.
 
-6) High cost: Quantum computers are very expensive to build and maintain. This is because they require specialized hardware and operating environments.
-7) Noise and errors: Quantum computers are more prone to noise and errors than traditional computers. This is because qubits are very sensitive to their environment.
+6) Qubit Decoherence: Quantum states are fragile and can easily lose their coherence, leading to errors in computations.
 
-5) Security risks: Quantum computers could be used to break current encryption algorithms. This could pose a threat to data security and privacy.
-   
-7) The problem of the quantum full-adder circuit is not very efficient. It requires a large number of qubits and gates, and it is very susceptible to errors. So, it is not yet possible to add large numbers on a quantum computer faster than on a classical computer.
+7) High cost: Quantum computers are very expensive to build and maintain. This is because they require specialized hardware and operating environments.
+  
+8) Noise and errors: Quantum computers are more prone to noise and errors than traditional computers. This is because qubits are very sensitive to their environment.
