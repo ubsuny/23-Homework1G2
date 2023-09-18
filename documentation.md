@@ -141,10 +141,10 @@ v) The binary addition is performed using CNOT gates. If the number of qubits is
 
 ### Adding 1+1
 ![hald_adder](https://github.com/Pranjal-Srivastava-2023/23-Homework1G2_forked/assets/143828394/8d061657-4037-4c15-bb97-ddd201f15e7e)
+output = carry = 1 and sum = 0
 
-
-# To perform the addition operation 1+1 using a half adder
- Following steps are preformed:
+#### To perform the addition operation 1+1 using a half adder
+ The following steps are performed:
 - Start with all qubits in the |0⟩ state, which represents binary 0.
 - Apply a NOT gate to q0 and q1. This operation flips their states from |0⟩ to   |1⟩, representing the inputs 1 and 1, respectively.
 - Next, apply a CNOT gate from q0 to q2. The CNOT gate flips the state of   q2   (controlled qubit) if and only if q0 (target qubit) is in the |1⟩ state.       This represents the XOR operation between q0 and q2, which results in q2       being in the |1⟩ state if q0 is in the |1⟩ state. This represents the sum      bit.
@@ -153,12 +153,15 @@ v) The binary addition is performed using CNOT gates. If the number of qubits is
 
   After these operations, we will have the following results:
 
-    - q2 will be in the |0⟩ state, representing the sum bit and get 0 as sum.
+    - q2 will be in the |0⟩ state, representing the sum bit, and get 0 as the sum.
     - q3 will be in the |1⟩ state, representing the carry bit, which is 1 as a       carry.
-  So, in this circuit, we've successfully performed the half adder operation     for 1+1, resulting in sum=0 and carry=1.
-# Adding 0+1
+  So, in this circuit, we've successfully performed the half-adder operation     for 1+1, resulting in sum=0 and carry=1.
+
+### Adding 0+1
 ![half_adder2](https://github.com/ubsuny/23-Homework1G2/assets/143828394/cc8a59de-5c20-40e2-8848-1d11511bb3fc)
-Following steps are preformed:
+output = carry = 0 and sum = 1
+
+#### The following steps are performed:
 - Start with all qubits in the |0⟩ state, which represents binary 0.
 - Apply a NOT gate to q0 and q1. This operation flips their states from |0⟩ to |1⟩, representing the inputs 1 and 1,               respectively.
 - Apply a NOT gate again to the q0, representing the final input 0
@@ -168,55 +171,48 @@ Following steps are preformed:
 
   After these operations, we will have the following results:
 
-    - q2 will be in the |1⟩ state, representing the sum bit and get 1 as sum.
+    - q2 will be in the |1⟩ state, representing the sum bit and get 1 as a sum.
     - q3 will be in the |0⟩ state, representing the carry bit, which is 0 as a carry.
-  So, in this circuit, we've successfully performed the half adder operation for 0+1, resulting in sum=1 and carry=0.
-=======
-output = carry = 1 and sum = 0
-### Adding 0+1
-![half_adder2](https://github.com/ubsuny/23-Homework1G2/assets/143828394/cc8a59de-5c20-40e2-8848-1d11511bb3fc)
-output = carry = 0 and sum = 1
+  So, in this circuit, we've successfully performed the half-adder operation for 0+1, resulting in sum=1 and carry=0.
+
 ### Adding 1+0
 ![ha_one_zero](https://github.com/s4il3sh/23-Homework1G2/assets/144289804/ed83dc76-8cce-4b0d-9656-7d67ba1cf37d)
 output = carry = 0 and sum = 1
+
+#### The following steps are performed:
+- Start with all qubits in the |0⟩ state, which represents binary 0.
+- Apply a NOT gate to q0 and q1. This operation flips their states from |0⟩ to |1⟩, representing the inputs 1 and 1,               respectively.
+- Apply a NOT gate again to the q0, representing the final input 0
+- Next, apply a CNOT gate from q0 to q2. The CNOT gate flips the state of q2 (controlled qubit) if and only if q0 (target qubit)   is in the |1⟩ state. This represents the XOR operation between q0 and q2, which results in q2 being in the |0⟩ state if q0 is in the |0⟩ state. This represents the sum bit.
+- Also apply another CNOT gate from q1 to q2. This represents the XOR operation between q1 and q2, which results in q2 being in the |1⟩ state if q1 is in the |1⟩ state.
+- Finally, apply a CCNOT (Toffoli) gate from q0 and q1 to q3. The CCNOT gate is a controlled-controlled-X gate that flips the      state of q3 if both q0 and q1 are in the |1⟩ state and the result is stored in q3 as the carry bit. however, in this case q0     is 0 and q1 is 1.
+
+  After these operations, we will have the following results:
+
+    - q2 will be in the |1⟩ state, representing the sum bit and get 1 as a sum.
+    - q3 will be in the |0⟩ state, representing the carry bit, which is 0 as a carry.
+  So, in this circuit, we've successfully performed the half-adder operation for 0+1, resulting in sum=1 and carry=0.
+
 ### Adding 0+0
 ![ha_zero_zero](https://github.com/s4il3sh/23-Homework1G2/assets/144289804/7d102862-b6d9-43b9-9244-96a516c90484)
 output = carry = 0 and sum = 0
 
 # Limitation of the Quantum Computer
-1) High cost: Quantum computers are very expensive to build and maintain. This is because they require specialized hardware and operating environments.
-2) Noise and errors: Quantum computers are more prone to noise and errors than traditional computers. This is because qubits are very sensitive to their environment.
-3) Scalability: It is difficult to build and scale quantum computers. This is because qubits are difficult to control and manipulate.
-4) Software development: Developing software for quantum computers is challenging. This is because quantum algorithms are very different from classical algorithms.
-5) Security risks: Quantum computers could be used to break current encryption algorithms. This could pose a threat to data security and privacy.
-6) The problem of the quantum full-adder circuit is not very efficient. It requires a large number of qubits and gates, and it is very susceptible to errors. So, it is not yet possible to add large numbers on a quantum computer faster than on a classical computer.
-
-
-
-Following steps are preformed:
-- Start with all qubits in the |0⟩ state, which represents binary 0.
-- Apply a NOT gate to q0 and q1. This operation flips their states from |0⟩ to |1⟩, representing the inputs 1 and 1,               respectively.
-- Apply a NOT gate again to the q0, representing the final input 0
-- Next, apply a CNOT gate from q0 to q2. The CNOT gate flips the state of q2 (controlled qubit) if and only if q0 (target qubit)   is in the |1⟩ state. This represents the XOR operation between q0 and q2, which results in q2 being in the |0⟩ state if q0 is in the |0⟩ state. This represents the sum bit.
-- Also apply another CNOT gate from q1 to q2. This represents the XOR operation between q1 and q2, which results in q2 being in the |1⟩ state if q1 is in the |1⟩ state.
-- Finally, apply a CCNOT (Toffoli) gate from q0 and q1 to q3. The CCNOT gate is a controlled-controlled-X gate that flips the      state of q3 if both q0 and q1 are in the |1⟩ state and the result is stored in q3 as the carry bit. however, in this case q0     is 0 and q1 is 1.
-
-  After these operations, we will have the following results:
-
-    - q2 will be in the |1⟩ state, representing the sum bit and get 1 as sum.
-    - q3 will be in the |0⟩ state, representing the carry bit, which is 0 as a carry.
-  So, in this circuit, we've successfully performed the half adder operation for 0+1, resulting in sum=1 and carry=0.
-
-# Limitations of Quantum Computers
-
 Quantum computers, including those used in platforms like IBM Quantum Composer, have several limitations when it comes to designing circuits and solving practical problems.
 
-i) Error rates: For example, the X gate flips the state of a qubit, changing |0⟩ to |1⟩ and vice versa. Error rates for a gate like the X gate can vary depending on the quantum hardware and environmental conditions.
+1) Error rates: For example, the X gate flips the state of a qubit, changing |0⟩ to |1⟩ and vice versa. Error rates for a gate like the X gate can vary depending on the quantum hardware and environmental conditions.
 
-ii) Gate Errors: Quantum gates are not perfect, and gate errors can accumulate in complex quantum circuits, making it difficult to perform long and accurate computations.
+2) Gate Errors: Quantum gates are not perfect, and gate errors can accumulate in complex quantum circuits, making it difficult to perform long and accurate computations.
 
-iii) Limited Software Ecosystem: Quantum software tools and libraries are still in their early stages of development, which can make it challenging for users to design and implement quantum circuits efficiently.
+3) Limited Software Ecosystem: Quantum software tools and libraries are still in their early stages of development, which can make it challenging for users to design and implement quantum circuits efficiently.
 
-iv) Scalability Challenges: Building large-scale, fault-tolerant quantum computers is a significant engineering challenge.
+4) Scalability Challenges: Building large-scale, fault-tolerant quantum computers is a significant engineering challenge.
 
-v) Qubit Decoherence: Quantum states are fragile and can easily lose their coherence, leading to errors in computations.
+5) Qubit Decoherence: Quantum states are fragile and can easily lose their coherence, leading to errors in computations.
+
+6) High cost: Quantum computers are very expensive to build and maintain. This is because they require specialized hardware and operating environments.
+7) Noise and errors: Quantum computers are more prone to noise and errors than traditional computers. This is because qubits are very sensitive to their environment.
+
+5) Security risks: Quantum computers could be used to break current encryption algorithms. This could pose a threat to data security and privacy.
+   
+7) The problem of the quantum full-adder circuit is not very efficient. It requires a large number of qubits and gates, and it is very susceptible to errors. So, it is not yet possible to add large numbers on a quantum computer faster than on a classical computer.
