@@ -1,3 +1,4 @@
+
 ## Basic idea: Steps to implement a classical operation on a Quantum Computer:
 1. **Quantum Circuit**: Think of a quantum circuit as a set of instructions for the quantum computer. Just like a recipe guides a chef in the kitchen, a quantum circuit guides the quantum computer in performing specific tasks.
 2. **Encoding**: When you want to add two numbers, the first step is to encode these numbers into a quantum state. This is like translating the numbers into a language that the quantum computer understands. If you have the numbers 3 and 2, you would represent them as a set of qubits in a specific way.
@@ -67,6 +68,16 @@ def add_quantum(num1, num2, shots=1024):
     for i in range(num_qubits - 1):
         qc.ccx(i, i + num_qubits, i + num_qubits + 1)
         qc.cx(i, i + num_qubits)
+        """
+        Performs quantum addition using controlled-X gates.
+
+        This function performs quantum addition by applying controlled-X (CNOT) gates to the qubits. 
+        It iterates through the qubits and applies CNOT gates to perform the addition operation.
+
+        Args:
+            i (int): The index of the qubit being operated on.
+        """
+
 
     # Measure the result
     qc.measure(range(num_qubits, num_qubits * 2), range(num_qubits))
@@ -109,12 +120,13 @@ plot_histogram(counts)
 
 ```
 
-## 2. Constructing half adder circuit (using IBM composer)
-# Truth Table
+# 2. Constructing half adder circuit (using IBM composer)
+## Truth Table
 ![image](https://github.com/ubsuny/23-Homework1G2/assets/143649367/42201d3d-491c-4e8f-a65f-0f3d4a30f300)
 
-# Adding 1+1
+### Adding 1+1
 ![hald_adder](https://github.com/Pranjal-Srivastava-2023/23-Homework1G2_forked/assets/143828394/8d061657-4037-4c15-bb97-ddd201f15e7e)
+
 
 # To perform the addition operation 1+1 using a half adder
  Following steps are preformed:
@@ -144,3 +156,25 @@ Following steps are preformed:
     - q2 will be in the |1⟩ state, representing the sum bit and get 1 as sum.
     - q3 will be in the |0⟩ state, representing the carry bit, which is 0 as a carry.
   So, in this circuit, we've successfully performed the half adder operation for 0+1, resulting in sum=1 and carry=0.
+=======
+output = carry = 1 and sum = 0
+### Adding 0+1
+![half_adder2](https://github.com/ubsuny/23-Homework1G2/assets/143828394/cc8a59de-5c20-40e2-8848-1d11511bb3fc)
+output = carry = 0 and sum = 1
+### Adding 1+0
+![ha_one_zero](https://github.com/s4il3sh/23-Homework1G2/assets/144289804/ed83dc76-8cce-4b0d-9656-7d67ba1cf37d)
+output = carry = 0 and sum = 1
+### Adding 0+0
+![ha_zero_zero](https://github.com/s4il3sh/23-Homework1G2/assets/144289804/7d102862-b6d9-43b9-9244-96a516c90484)
+output = carry = 0 and sum = 0
+
+# Limitation of the Quantum Computer
+1) High cost: Quantum computers are very expensive to build and maintain. This is because they require specialized hardware and operating environments.
+2) Noise and errors: Quantum computers are more prone to noise and errors than traditional computers. This is because qubits are very sensitive to their environment.
+3) Scalability: It is difficult to build and scale quantum computers. This is because qubits are difficult to control and manipulate.
+4) Software development: Developing software for quantum computers is challenging. This is because quantum algorithms are very different from classical algorithms.
+5) Security risks: Quantum computers could be used to break current encryption algorithms. This could pose a threat to data security and privacy.
+6) The problem of the quantum full-adder circuit is not very efficient. It requires a large number of qubits and gates, and it is very susceptible to errors. So, it is not yet possible to add large numbers on a quantum computer faster than on a classical computer.
+
+
+
