@@ -146,27 +146,27 @@ output = carry = 1 and sum = 0
  The following steps are performed:
 - Start with all qubits in the |0⟩ state, which represents binary 0.
 - Apply a NOT gate to q0 and q1. This operation flips their states from |0⟩ to   |1⟩, representing the inputs 1 and 1, respectively.
-- Next, apply a CNOT gate from q0 to q2. The CNOT gate flips the state of   q2   (controlled qubit) if and only if q0 (target qubit) is in the |1⟩ state.       This represents the XOR operation between q0 and q2, which results in q2       being in the |1⟩ state if q0 is in the |1⟩ state. This represents the sum      bit.
-- Also apply another CNOT gate from q1 to q2. This represents the XOR            operation between q1 and q2, which results in q2 being in the |1⟩ state if     q1 is in the |1⟩ state.
-- Finally, apply a CCNOT (Toffoli) gate from q0 and q1 to q3. The CCNOT gate     is a controlled-controlled-X gate that flips the state of q3 if both q0 and    q1 are in the |1⟩ state and the result is stored in q3 as the carry bit.
+- Next, apply a CNOT gate from q0 to q2. The CNOT gate flips the state of q2 (controlled qubit) if and only if q0 (target qubit) is in the |1⟩ state. This represents the XOR operation between q0 and q2, which results in q2 being in the |1⟩ state if q0 is in the |1⟩ state. This represents the sum bit.
+- Also apply another CNOT gate from q1 to q2. This represents the XOR operation between q1 and q2, which results in q2 being in the |1⟩ state if q1 is in the |1⟩ state.
+- Finally, apply a CCNOT (Toffoli) gate from q0 and q1 to q3. The CCNOT gate is a controlled-controlled-X gate that flips the state of q3 if both q0 and q1 are in the |1⟩ state and the result is stored in q3 as the carry bit.
 
   After these operations, we will have the following results:
 
     - q2 will be in the |0⟩ state, representing the sum bit, and get 0 as the sum.
-    - q3 will be in the |1⟩ state, representing the carry bit, which is 1 as a       carry.
-  So, in this circuit, we've successfully performed the half-adder operation     for 1+1, resulting in sum=0 and carry=1.
+    - q3 will be in the |1⟩ state, representing the carry bit, which is 1 as a carry.
+  So, in this circuit, we've successfully performed the half-adder operation for 1+1, resulting in sum=0 and carry=1.
 
 ### Adding 0+1
 ![half_adder2](https://github.com/ubsuny/23-Homework1G2/assets/143828394/cc8a59de-5c20-40e2-8848-1d11511bb3fc)
 output = carry = 0 and sum = 1
-
+#### To perform the addition operation 0+1 using a half adder
 #### The following steps are performed:
 - Start with all qubits in the |0⟩ state, which represents binary 0.
 - Apply a NOT gate to q0 and q1. This operation flips their states from |0⟩ to |1⟩, representing the inputs 1 and 1,               respectively.
 - Apply a NOT gate again to the q0, representing the final input 0
 - Next, apply a CNOT gate from q0 to q2. The CNOT gate flips the state of q2 (controlled qubit) if and only if q0 (target qubit)   is in the |1⟩ state. This represents the XOR operation between q0 and q2, which results in q2 being in the |0⟩ state if q0 is in the |0⟩ state. This represents the sum bit.
 - Also apply another CNOT gate from q1 to q2. This represents the XOR operation between q1 and q2, which results in q2 being in the |1⟩ state if q1 is in the |1⟩ state.
-- Finally, apply a CCNOT (Toffoli) gate from q0 and q1 to q3. The CCNOT gate is a controlled-controlled-X gate that flips the      state of q3 if both q0 and q1 are in the |1⟩ state and the result is stored in q3 as the carry bit. however, in this case q0     is 0 and q1 is 1.
+- Finally, apply a CCNOT (Toffoli) gate from q0 and q1 to q3. The CCNOT gate is a controlled-controlled-X gate that flips the      state of q3 if both q0 and q1 are in the |1⟩ state and the result is stored in q3 as the carry bit. However, in this case q0     is in 0 and q1 is in 1 state.
 
   After these operations, we will have the following results:
 
@@ -177,24 +177,35 @@ output = carry = 0 and sum = 1
 ### Adding 1+0
 ![ha_one_zero](https://github.com/s4il3sh/23-Homework1G2/assets/144289804/ed83dc76-8cce-4b0d-9656-7d67ba1cf37d)
 output = carry = 0 and sum = 1
-
+#### To perform the addition operation 1+0 using a half adder
 #### The following steps are performed:
-- Start with all qubits in the |0⟩ state, which represents binary 0.
-- Apply a NOT gate to q0 and q1. This operation flips their states from |0⟩ to |1⟩, representing the inputs 1 and 1,               respectively.
-- Apply a NOT gate again to the q0, representing the final input 0
-- Next, apply a CNOT gate from q0 to q2. The CNOT gate flips the state of q2 (controlled qubit) if and only if q0 (target qubit)   is in the |1⟩ state. This represents the XOR operation between q0 and q2, which results in q2 being in the |0⟩ state if q0 is in the |0⟩ state. This represents the sum bit.
-- Also apply another CNOT gate from q1 to q2. This represents the XOR operation between q1 and q2, which results in q2 being in the |1⟩ state if q1 is in the |1⟩ state.
-- Finally, apply a CCNOT (Toffoli) gate from q0 and q1 to q3. The CCNOT gate is a controlled-controlled-X gate that flips the      state of q3 if both q0 and q1 are in the |1⟩ state and the result is stored in q3 as the carry bit. however, in this case q0     is 0 and q1 is 1.
+- Initially, all qubits are in the |0⟩ state, which represents binary 0.
+- Apply a NOT gate (X-gate) to q0 which flips the state from |0⟩ to |1⟩, representing the input 1 (for q0) and 0 is an another    input from q1.
+- Next, apply a CNOT gate from q0 to q2. The CNOT gate flips the state of q2 (controlled qubit) if and only if q0 (target qubit)   is in the |1⟩ state. This represents the XOR operation between q0 and q2, which results in q2 being in the |1⟩ state if q0 is    in the |1⟩ state. 
+- Also apply another CNOT gate from q1 to q2. This represents the XOR operation between q1 and q2, which results in q2 being in    the |1⟩ state if q1 is in the |0⟩ state, since the output obtained from previous CNOT gate (joining q0 to q2) is 1 in q2. This   represents the sum bit.
+- Finally, apply a CCNOT (Toffoli) gate from q0 and q1 to q3. The CCNOT gate is a controlled-controlled-X gate that flips the      state of q3 if both q0 and q1 are in the |1⟩ state and the result is stored in q3 as the carry bit. However, in this case q0     is in 1 and q1 is in 0 state.
 
   After these operations, we will have the following results:
 
     - q2 will be in the |1⟩ state, representing the sum bit and get 1 as a sum.
     - q3 will be in the |0⟩ state, representing the carry bit, which is 0 as a carry.
-  So, in this circuit, we've successfully performed the half-adder operation for 0+1, resulting in sum=1 and carry=0.
+  So, in this circuit, we've successfully performed the half-adder operation for 1+0, resulting in sum=1 and carry=0.
 
 ### Adding 0+0
 ![ha_zero_zero](https://github.com/s4il3sh/23-Homework1G2/assets/144289804/7d102862-b6d9-43b9-9244-96a516c90484)
 output = carry = 0 and sum = 0
+#### To perform the addition operation 0+0 using a half adder
+#### The following steps are performed:
+- Initially, all qubits are in the |0⟩ state, which represents binary 0.
+- Then apply a CNOT gate from q0 to q2. The CNOT gate flips the state of q2 (controlled qubit) if and only if q0 (target qubit)   is in the |1⟩ state. In this case, q0 is in |0⟩ state so that there is no flip in q2.
+- Also apply another CNOT gate from q1 to q2, which results q2 in the |0⟩ state, as q1 is already in the |0⟩ state.
+- Finally, apply a CCNOT (Toffoli) gate from q0 and q1 to q3. The CCNOT gate is a controlled-controlled-X gate that flips the      state of q3 if both q0 and q1 are in the |1⟩ state and the result is stored in q3 as the carry bit. However, in this case q0     and q1 both are in 0 state.
+
+  After these operations, we will have the following results:
+
+    - q2 will be in the |0⟩ state, representing the sum bit and get 0 as a sum.
+    - q3 will be in the |0⟩ state, representing the carry bit, which is 0 as a carry.
+  So, in this circuit, we've successfully performed the half-adder operation for 0+0, resulting in sum=0 and carry=0.
 
 # Limitation of the Quantum Computer
 Quantum computers, including those used in platforms like IBM Quantum Composer, have several limitations when it comes to designing circuits and solving practical problems.
